@@ -9,7 +9,7 @@ export const formatDistanceFromNow = (dateStr) =>
     addSuffix: true,
   }).replace("about ", "");
 
-function ReservationCard({ booking }) {
+function ReservationCard({ booking, onDelete }) {
   const {
     id,
     guestId,
@@ -36,7 +36,7 @@ function ReservationCard({ booking }) {
 
       <div className="flex-grow px-6 py-3 flex flex-col">
         <div className="flex items-center justify-between">
-          <h3 className="text-xl font-semibold">
+          <h3 className="text-lg font-semibold">
             {numNights} nights in Cabin {name}
           </h3>
           {isPast(new Date(startDate)) ? (
@@ -50,7 +50,7 @@ function ReservationCard({ booking }) {
           )}
         </div>
 
-        <p className="text-lg text-primary-300">
+        <p className="text-l text-primary-300">
           {format(new Date(startDate), "EEE, MMM dd yyyy")} (
           {isToday(new Date(startDate))
             ? "Today"
@@ -59,7 +59,7 @@ function ReservationCard({ booking }) {
         </p>
 
         <div className="flex gap-5 mt-auto items-baseline">
-          <p className="text-xl font-semibold text-accent-400">${totalPrice}</p>
+          <p className="text-xl font-semibold text-accent-400">₱{totalPrice}</p>
           <p className="text-primary-300">&bull;</p>
           <p className="text-lg text-primary-300">
             {numGuests} guest{numGuests > 1 && "s"}
@@ -80,7 +80,7 @@ function ReservationCard({ booking }) {
               <PencilSquareIcon className="h-5 w-5 text-primary-600 group-hover:text-primary-800 transition-colors" />
               <span className="mt-1">Edit</span>
             </Link>
-            <DeleteReservation bookingId={id} />
+            <DeleteReservation bookingId={id} onDelete={onDelete} />
           </>
         ) : null}
       </div>
