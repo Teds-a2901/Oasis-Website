@@ -5,12 +5,12 @@ import { useTransition } from "react";
 import SpinnerMini from "./SpinnerMini";
 import { deleteReservation } from "../_lib/actions";
 
-function DeleteReservation({ bookingId }) {
+function DeleteReservation({ bookingId, onDelete }) {
   const [isPending, startTransition] = useTransition();
 
   function handleDelete() {
     if (confirm("Are you sure you want to delete this reservation?"))
-      startTransition(() => deleteReservation(bookingId));
+      startTransition(() => onDelete(bookingId));
   }
 
   return (
@@ -21,7 +21,10 @@ function DeleteReservation({ bookingId }) {
       {!isPending ? (
         <>
           <TrashIcon className="h-5 w-5 text-primary-600 group-hover:text-primary-800 transition-colors" />
-          <span className="mt-1">Delete</span>
+
+          <span className="mt-1" pendingText="Deleting...">
+            Delete
+          </span>
         </>
       ) : (
         <span className="mx-auto">
