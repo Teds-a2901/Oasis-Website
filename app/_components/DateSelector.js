@@ -10,7 +10,6 @@ import {
 import { DayPicker } from "react-day-picker";
 import { useReservation } from "./ReservationContext";
 import "react-day-picker/dist/style.css";
-import toast from "react-hot-toast";
 
 function isAlreadyBooked(range, datesArr) {
   return (
