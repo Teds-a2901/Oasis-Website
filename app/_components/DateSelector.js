@@ -9,8 +9,7 @@ import {
 } from "date-fns";
 import { DayPicker } from "react-day-picker";
 import { useReservation } from "./ReservationContext";
-import "react-day-picker/dist/style.css";
-
+import "react-day-picker/style.css";
 function isAlreadyBooked(range, datesArr) {
   return (
     range?.from &&
